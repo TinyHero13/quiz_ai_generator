@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="quiz-container">
+    <h2 class="mb-4">Resultado</h2>
+    <div class="model-info mb-3 text-muted">
+        <small>Questões geradas por {{ model_display }}</small>
+    </div>
+    
+    <div class="alert alert-primary mb-4">
+        <h3>Sua pontuação: {{ score }} / {{ total }}</h3>
+        <p>{{ (score / total * 100)|round(2) }}% correto</p>
+    </div>
+    
+    <div class="review mb-4">
+        <h4>Revisão</h4>
+        {% for i in range(questions|length) %}
+            {% set question = questions[i] %}
+            {% set answer = answers[i] if i < answers|length else None %}
+            
+            <div class="question-review mb-4 p-3 {% if answer and answer.is_correct %}result-correct{% elif answer %}result-incorrect{% endif %}">
+                <p><strong>Questão {{ i + 1 }}:</strong> {{ question.question }}</p>
+                
+                <div class="options-list">
+                    {% for option in question.options %}
+                        <div class="option">
+                            <span class="
+                                {% if 'ABCD'[loop.index0] == question.correct_answer %}fw-bold{% endif %}
+                                {% if answer and 'ABCD'[loop.index0] == answer.selected and not answer.is_correct %}text-danger{% endif %}
+                                {% if answer and 'ABCD'[loop.index0] == question.correct_answer %}text-success{% endif %}
+                            ">
+                                {{ option }}
+                                {% if 'ABCD'[loop.index0] == question.correct_answer %}<span class="badge bg-success">Correto</span>{% endif %}
+                                {% if answer and 'ABCD'[loop.index0] == answer.selected and answer.selected != question.correct_answer %}
+                                    <span class="badge bg-danger">Sua resposta</span>
+                                {% endif %}
+                            </span>
+                        </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="explanation mt-2">
+                    <strong>Explicação:</strong> {{ question.explanation }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <div class="d-grid gap-2">
+        <a href="{{ url_for('restart') }}" class="btn btn-primary">Fazer outro quiz</a>
+    </div>
+</div>
+{% endblock %}

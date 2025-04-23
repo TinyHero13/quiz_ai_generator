@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="quiz-container">
+    <h2 class="mb-4">Gerador de quiz com IA</h2>
+
+    <form action="{{ url_for('start_quiz') }}" method="post">
+        <div class="mb-4">
+            <h4>Selecione um modelo de LLM</h4>
+            <div class="mb-3">
+                <label for="model" class="form-label">Model:</label>
+                <select class="form-select" id="model" name="model">
+                    {% for model in models %}
+                    <option value="{{ model.id }}">{{ model.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        
+        <div class="mb-4">
+            <h4>Configurações do Quiz</h4>
+            <div class="mb-3">
+                <label for="num_questions" class="form-label">Número de questões:</label>
+                <input type="number" class="form-control" name="num_questions" id="num_questions" min="1" max="50" value="5" />
+            </div>
+            
+            <div class="mb-3">
+                <label for="topic" class="form-label">Tema do quiz:</label>
+                <input type="text" class="form-control" name="topic" id="topic" placeholder="e.g., AWS VPC, Kubernetes, Machine Learning, Programando em Python..." required>
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary w-100">Gerar perguntas</button>
+    </form>
+</div>
+{% endblock %}

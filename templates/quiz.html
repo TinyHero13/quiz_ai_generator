@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="quiz-container">
+    <div class="mb-3 d-flex justify-content-between">
+        <span>Questão {{ question_number }} de {{ total_questions }}</span>
+        <span>Pontuação: {{ session.score|default(0) }}</span>
+    </div>
+    
+    <h3 class="mb-4">{{ question.question }}</h3>
+    
+    <form action="{{ url_for('submit_answer') }}" method="post">
+        <div class="options-container mb-4">
+            {% for option in question.options %}
+                <div class="option mb-2">
+                    <input type="radio" name="answer" id="option{{ loop.index }}" value="{{ 'ABCD'[loop.index0] }}" class="d-none">
+                    <label for="option{{ loop.index }}" class="option-label">
+                        {{ option }}
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <button type="submit" class="btn btn-primary w-100">Enviar resposta</button>
+    </form>
+</div>
+{% endblock %}

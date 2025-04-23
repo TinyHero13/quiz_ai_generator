@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="quiz-container">
+    <div class="mb-3 d-flex justify-content-between">
+        <span>Questão {{ question_number }} de {{ total_questions }}</span>
+        <span>Pontuação: {{ session.score|default(0) }}</span>
+    </div>
+        
+    <h3 class="mb-4">{{ question.question }}</h3>
+    
+    <div class="result-feedback mb-3">
+        {% if answer.is_correct %}
+        <div class="alert alert-success">
+            <strong>Acertou!</strong>
+        </div>
+        {% else %}
+        <div class="alert alert-danger">
+            <strong>Errou!</strong> A resposta correta é {{ question.correct_answer }}.
+        </div>
+        {% endif %}
+    </div>
+    
+    <div class="options-container mb-4">
+        {% for option in question.options %}
+            {% set option_letter = 'ABCD'[loop.index0] %}
+            <div class="option mb-2">
+                <div class="option-label result-option
+                    {% if option_letter == question.correct_answer %}option-correct{% endif %}
+                    {% if option_letter == answer.selected and not answer.is_correct %}option-incorrect{% endif %}">
+                    {{ option }}
+                    {% if option_letter == question.correct_answer %}
+                        <span class="badge bg-success">Correta</span>
+                    {% endif %}
+                    {% if option_letter == answer.selected and not answer.is_correct %}
+                        <span class="badge bg-danger">Sua resposta</span>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <div class="explanation mb-4">
+        <h5>Explicação:</h5>
+        <p>{{ question.explanation }}</p>
+    </div>
+    
+    {% if question_number < total_questions %}
+    <form action="{{ url_for('next_question') }}" method="post">
+        <input type="hidden" name="question_id" value="{{ question.id }}">
+        <button type="submit" class="btn btn-primary w-100">Próxima questão</button>
+    </form>
+    {% else %}
+    <a href="{{ url_for('results') }}" class="btn btn-primary w-100">Ver resultado</a>
+    {% endif %}
+</div>
+{% endblock %}
