@@ -25,7 +25,27 @@ O Quiz App é uma aplicação web desenvolvida com Flask que utiliza modelos de 
    cd quiz_ai_generator
    ```
 
-2. Instale as dependências:
+2. Escolha uma das opções abaixo para executar:
+
+### Docker
+
+1. Construa a imagem Docker:
+   ```bash
+   docker build -t quiz_app:latest .
+   ```
+
+2. Execute o container:
+   ```bash
+   docker run -p 5000:5000 -e GROQ_API_KEY=sua_chave_api_aqui quiz_app:latest
+   ```
+
+   **Observações:**
+   - Substitua `sua_chave_api_aqui` pela sua chave da API Groq 
+   - A aplicação estará disponível em `http://localhost:5000`
+ 
+### Instalação Local
+
+1. Instale as dependências:
    ```
    pip install -r requirements.txt
    ```
@@ -52,6 +72,7 @@ O Quiz App é uma aplicação web desenvolvida com Flask que utiliza modelos de 
 4. Clique em "Iniciar Quiz"
 5. Responda às perguntas e receba feedback 
 6. Ao final, veja seu resultado completo com explicações
+
 
 ## Estrutura do Projeto
 
