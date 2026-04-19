@@ -1,85 +1,111 @@
-# Quiz App com inteligência artificial
+# Quiz App with Artificial Intelligence
 
-O Quiz App é uma aplicação web desenvolvida com Flask que utiliza modelos de linguagem da Groq para gerar quizzes de múltipla escolha personalizados sobre qualquer tópico.
+The Quiz App is a web application built with **Flask** that uses **Groq** language models to generate personalized multiple-choice quizzes on any topic.
 
-## Descrição do projeto
+---
 
-- Crie perguntas sobre qualquer tópico usando IA
-- Escolha entre diversos modelos da Groq
-- Defina o número de perguntas desejadas
-- Acompanhe seu desempenho durante e após o quiz
+## 📋 Project Description
 
-## Ferramentas utilizadas
+- Create questions on any topic using AI
+- Choose from various Groq models
+- Set the desired number of questions
+- Track your performance during and after the quiz
 
-- Python 3.11
-- Flask
-- LiteLLM
-- python-dotenv
-- API Groq
+---
 
-## Configuração do ambiente
+## 🛠️ Tools Used
 
-1. Clone o repositório:
-   ```
-   git clone https://github.com/TinyHero13/quiz_ai_generator.git
-   cd quiz_ai_generator
-   ```
+| Tool | Version |
+|------|---------|
+| Python | 3.11 |
+| Flask | — |
+| LiteLLM | — |
+| python-dotenv | — |
+| Groq API | — |
 
-2. Escolha uma das opções abaixo para executar:
+---
 
-### Docker
+## ⚙️ Environment Setup
 
-1. Construa a imagem Docker:
-   ```bash
-   docker build -t quiz_app:latest .
-   ```
+1. Clone the repository:
 
-2. Execute o container:
-   ```bash
-   docker run -p 5000:5000 -e GROQ_API_KEY=sua_chave_api_aqui quiz_app:latest
-   ```
+```bash
+git clone https://github.com/TinyHero13/quiz_ai_generator.git
+cd quiz_ai_generator
+```
 
-   **Observações:**
-   - Substitua `sua_chave_api_aqui` pela sua chave da API Groq 
-   - A aplicação estará disponível em `http://localhost:5000`
- 
-### Instalação Local
+2. Choose one of the options below to run:
 
-1. Instale as dependências:
-   ```
-   pip install -r requirements.txt
-   ```
+---
 
-3. Configure as variáveis de ambiente:
-   - Crie um arquivo `.env` na raiz do projeto
-   - Adicione sua chave da API Groq 
+### 🐳 Docker
 
-4. Inicie o servidor Flask:
-   ```
-   python app.py
-   ```
+1. Build the Docker image:
 
-5. Acesse a aplicação no navegador:
-   ```
-   http://localhost:5000
-   ```
+```bash
+docker build -t quiz_app:latest .
+```
 
-## Como Usar
+2. Run the container:
 
-1. Selecione o modelo de IA desejado
-2. Escolha o número de perguntas (padrão: 5)
-3. Digite o tópico para seu quiz
-4. Clique em "Iniciar Quiz"
-5. Responda às perguntas e receba feedback 
-6. Ao final, veja seu resultado completo com explicações
+```bash
+docker run -p 5000:5000 -e GROQ_API_KEY=your_api_key_here quiz_app:latest
+```
 
+> **Notes:**
+> - Replace `your_api_key_here` with your Groq API key
+> - The application will be available at `http://localhost:5000`
 
-## Estrutura do Projeto
+---
 
-- `app.py`: Arquivo principal com a lógica do Flask e interação com a API
-- `templates/`: Contém os arquivos HTML para a interface do usuário
-- `static/`: CSS da aplicação
+### 💻 Local Installation
 
-## Erros
+1. Install the dependencies:
 
-- Se o modelo não gerar um JSON válido, tente novamente ou tente outro modelo da lista
+```bash
+pip install -r requirements.txt
+```
+
+2. Configure the environment variables:
+   - Create a `.env` file in the project root
+   - Add your Groq API key
+
+3. Start the Flask server:
+
+```bash
+python app.py
+```
+
+4. Access the application in your browser:
+
+```
+http://localhost:5000
+```
+
+---
+
+## 🚀 How to Use
+
+1. Select the desired AI model
+2. Choose the number of questions *(default: 5)*
+3. Enter the topic for your quiz
+4. Click **"Start Quiz"**
+5. Answer the questions and receive feedback
+6. At the end, view your complete results with explanations
+
+---
+
+## 📁 Project Structure
+
+```
+quiz_ai_generator/
+├── app.py           # Main file with Flask logic and API interaction
+├── templates/       # HTML files for the user interface
+└── static/          # Application CSS
+```
+
+---
+
+## ⚠️ Errors
+
+> If the model does not generate valid JSON, try again or switch to another model from the list.
